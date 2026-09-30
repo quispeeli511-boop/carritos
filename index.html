@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Para mi amor bonito Adan</title>
+  <style>
+    :root{
+      --bg1:#020611; --bg2:#09142e; --orange:#ff7a00; --blue:#1e6bff; --pink:#ff3d78;
+      --shadow:0 0 22px rgba(30,107,255,.35),0 0 32px rgba(255,122,0,.20);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#000;color:#fff;font-family:"Trebuchet MS",Arial,sans-serif}
+    body{
+      background:
+        radial-gradient(circle at 50% 42%, rgba(36,86,255,.22), transparent 32%),
+        radial-gradient(circle at 18% 18%, rgba(42,92,255,.14), transparent 18%),
+        radial-gradient(circle at 84% 72%, rgba(255,90,30,.12), transparent 18%),
+        linear-gradient(180deg, var(--bg2), var(--bg1));
+    }
+    #stars,#shooting,#hearts,#sparkles{position:fixed;inset:0;pointer-events:none}
+    .star{position:absolute;border-radius:50%;background:#fff;opacity:var(--o,.8);filter:drop-shadow(0 0 6px rgba(255,255,255,.6));animation:twinkle var(--d,2.8s) ease-in-out infinite alternate}
+    @keyframes twinkle{from{transform:scale(.8);opacity:.25}to{transform:scale(1.2);opacity:1}}
+    .shoot{position:absolute;width:170px;height:2px;background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,176,64,.9),rgba(90,170,255,0));transform:rotate(-20deg);border-radius:999px;filter:drop-shadow(0 0 12px rgba(255,176,64,.55));animation:shoot 2.4s linear forwards;opacity:0}
+    @keyframes shoot{0%{opacity:0;transform:translate3d(0,0,0) rotate(-20deg) scaleX(.5)}8%{opacity:1}100%{opacity:0;transform:translate3d(45vw,20vh,0) rotate(-20deg) scaleX(1.2)}}
+    .spark{position:absolute;width:6px;height:6px;border-radius:50%;background:radial-gradient(circle,#fff 0 38%,#ffcf7b 40% 68%,rgba(255,255,255,0) 70%);filter:drop-shadow(0 0 12px rgba(255,170,70,.9));opacity:.9;animation:pulse 2s ease-in-out infinite alternate}
+    @keyframes pulse{from{transform:scale(.75);opacity:.35}to{transform:scale(1.4);opacity:1}}
+
+    #title{position:fixed;top:max(10px,env(safe-area-inset-top));left:0;right:0;z-index:26;text-align:center;padding:8px 12px 0;pointer-events:none}
+    #title .big{font:900 clamp(28px,6.8vw,56px)/1.05 'Trebuchet MS','Arial Black',sans-serif;text-shadow:0 0 8px #fff,0 0 20px var(--orange),0 0 36px var(--blue),3px 3px 0 #0a3886;letter-spacing:.5px}
+    #title .sub{margin-top:6px;font:700 clamp(13px,3.2vw,22px)/1.15 'Trebuchet MS',sans-serif;color:#ffd9a8;letter-spacing:1.3px;text-transform:uppercase;text-shadow:0 0 10px rgba(255,122,0,.9),2px 2px 0 rgba(10,61,145,.8)}
+
+    #hint{position:fixed;left:50%;top:calc(50% + 300px);transform:translateX(-50%);z-index:18;padding:11px 18px;border-radius:999px;background:rgba(5,8,20,.55);border:1px solid rgba(255,255,255,.12);box-shadow:var(--shadow);backdrop-filter:blur(8px);font-size:clamp(12px,2.9vw,16px);text-align:center;max-width:min(90vw,560px);color:#eef5ff}
+
+    #universe{position:absolute;left:50%;top:54%;transform:translate(-50%,-50%);width:min(94vw,860px);aspect-ratio:1/1;z-index:10;display:flex;align-items:center;justify-content:center}
+    #galaxy{position:absolute;inset:17% 17%;border-radius:50%;background:
+      radial-gradient(circle at 50% 50%, rgba(255,245,220,.96) 0 4%, rgba(255,176,50,.88) 5% 10%, rgba(255,122,0,.60) 11% 17%, rgba(26,100,255,.45) 20% 33%, rgba(0,0,0,0) 44%),
+      conic-gradient(from 0deg, rgba(255,122,0,0), rgba(255,122,0,.19), rgba(27,108,255,.22), rgba(255,122,0,.16), rgba(255,122,0,0));filter:drop-shadow(0 0 46px rgba(255,122,0,.62)) drop-shadow(0 0 64px rgba(27,108,255,.35));animation:spinGalaxy 48s linear infinite}
+    #galaxy:before,#galaxy:after{content:"";position:absolute;inset:-18%;border-radius:50%;background:repeating-conic-gradient(from 0deg,rgba(255,122,0,0) 0 10deg,rgba(255,122,0,.17) 10deg 20deg,rgba(29,107,255,.12) 20deg 32deg,rgba(255,122,0,0) 32deg 44deg);mask:radial-gradient(circle,transparent 0 26%,#fff 27% 68%,transparent 69% 100%);filter:blur(7px);opacity:.72;animation:spinArms 26s linear infinite}
+    #galaxy:after{inset:-10%;opacity:.4;transform:scale(1.08);animation-duration:18s;animation-direction:reverse}
+    @keyframes spinGalaxy{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+    @keyframes spinArms{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+
+    #core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:15;width:min(34vw,250px);aspect-ratio:1/1;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:radial-gradient(circle,rgba(255,255,255,.16),rgba(255,255,255,.03) 55%,rgba(255,255,255,0) 70%);border:1px solid rgba(255,255,255,.14);box-shadow:inset 0 0 30px rgba(255,255,255,.08),0 0 24px rgba(255,122,0,.26);backdrop-filter:blur(4px);pointer-events:none}
+    #core .name{font-size:clamp(26px,4.8vw,46px);font-weight:900;text-shadow:0 0 10px rgba(255,122,0,.8),0 0 18px rgba(30,107,255,.45)}
+    #core .line{margin-top:6px;font-size:clamp(12px,2.1vw,16px);color:#ffd8aa;font-weight:700;letter-spacing:1px}
+
+    .orbit{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:var(--size);height:var(--size);border-radius:50%;border:1px dashed rgba(255,255,255,.08);box-shadow:inset 0 0 40px rgba(255,255,255,.02)}
+    .rotor{position:absolute;inset:0;animation:orbit var(--dur) linear infinite;animation-direction:var(--dir,normal)}
+    .rotor .offset{position:absolute;inset:0;transform:rotate(var(--start,0deg))}
+    @keyframes orbit{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+
+    .carHot{position:absolute;left:50%;top:0;transform:translate(-50%,-50%);width:var(--carW);background:transparent;border:0;padding:0;cursor:pointer;pointer-events:auto;z-index:9999;display:block;-webkit-tap-highlight-color:transparent}
+    .carHot img{display:block;width:100%;height:auto;filter:drop-shadow(0 0 14px rgba(255,122,0,.8)) drop-shadow(0 0 18px rgba(30,107,255,.26));transition:transform .25s ease,filter .25s ease;background:transparent}
+    .carHot:hover img{transform:scale(1.08);filter:drop-shadow(0 0 18px rgba(255,186,80,.95)) drop-shadow(0 0 22px rgba(30,107,255,.4))}
+    .carHot:active img{transform:scale(.97)}
+
+    .orbitTag{position:absolute;left:100%;top:50%;transform:translate(-50%,-50%);padding:6px 12px;border-radius:999px;background:rgba(9,14,34,.42);border:1px solid rgba(255,255,255,.08);color:#fff;font-size:clamp(11px,1.55vw,13px);font-weight:700;white-space:nowrap;text-shadow:0 0 8px rgba(255,122,0,.85);box-shadow:0 0 18px rgba(30,107,255,.12);backdrop-filter:blur(6px)}
+
+    #centerWords{position:absolute;inset:0;z-index:14;pointer-events:none}
+    .wordOrbit{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:var(--size);height:var(--size);border-radius:50%;animation:orbit var(--dur) linear infinite;animation-direction:var(--dir,normal)}
+    .wordChip{position:absolute;left:50%;top:0;transform:translate(-50%,-50%);padding:6px 12px;border-radius:999px;background:rgba(6,11,28,.52);border:1px solid rgba(255,255,255,.10);box-shadow:0 0 18px rgba(255,122,0,.12),inset 0 0 10px rgba(255,255,255,.03);font-size:clamp(11px,1.5vw,13px);font-weight:700;color:#fff;white-space:nowrap;animation:breathe 2.3s ease-in-out infinite alternate}
+    @keyframes breathe{from{opacity:.55;transform:translate(-50%,-50%) scale(.97)}to{opacity:1;transform:translate(-50%,-50%) scale(1.03)}}
+
+    #photos{position:fixed;left:16px;bottom:14px;z-index:22;display:flex;gap:12px;align-items:flex-end;max-width:min(90vw,520px)}
+    .photoCard{background:rgba(4,9,28,.30);border:1px solid rgba(255,255,255,.10);border-radius:24px;padding:9px 9px 12px;box-shadow:0 12px 28px rgba(0,0,0,.35),0 0 18px rgba(30,107,255,.10),inset 0 0 12px rgba(255,255,255,.03);width:min(25vw,130px);transform:rotate(-3deg);backdrop-filter:blur(6px)}
+    .photoCard:nth-child(2){transform:rotate(4deg)}
+    .photoCard img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;border-radius:18px;border:2px solid rgba(255,255,255,.15);box-shadow:0 0 18px rgba(255,122,0,.12);background:transparent}
+    .photoCard p{margin:8px 4px 0;font-size:12px;font-weight:800;text-align:center;color:#eef5ff}
+
+    #musicBtn{position:fixed;right:14px;bottom:14px;z-index:24;border:none;cursor:pointer;border-radius:999px;padding:14px 20px;background:linear-gradient(135deg,#ff2e6f,#ff7a00 58%,#1e6bff);color:#fff;font:900 clamp(14px,2vw,18px)/1 'Trebuchet MS',Arial,sans-serif;box-shadow:0 0 16px rgba(255,46,111,.44),0 0 24px rgba(30,107,255,.28)}
+
+    #phrase{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%) scale(.55);z-index:50;width:min(88vw,500px);padding:26px 22px 22px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;color:#fff;background:linear-gradient(145deg,rgba(255,106,0,.97),rgba(255,45,45,.96) 55%,rgba(30,107,255,.96));border:4px solid #fff;border-radius:26px;box-shadow:0 0 35px rgba(255,106,0,.85),0 0 95px rgba(0,140,255,.4),inset 0 0 24px rgba(255,255,255,.22);opacity:0;pointer-events:none;transition:opacity .28s ease,transform .45s cubic-bezier(.2,1.5,.4,1)}
+    #phrase.show{opacity:1;pointer-events:auto;transform:translate(-50%,-50%) scale(1)}
+    #phraseCar{width:clamp(130px,42vw,210px);margin-top:-72px;filter:drop-shadow(0 8px 12px rgba(0,0,0,.55)) drop-shadow(0 0 16px #ffb020);animation:bob 1.2s ease-in-out infinite alternate}
+    @keyframes bob{from{transform:translateY(0) rotate(-3deg)}to{transform:translateY(-8px) rotate(3deg)}}
+    #phraseText{font:700 clamp(18px,4.8vw,27px)/1.42 Georgia,serif;font-style:italic;text-shadow:2px 2px 0 rgba(10,61,145,.85),0 0 14px rgba(0,0,0,.35)}
+    #closePhrase{margin-top:4px;padding:10px 16px;border:none;border-radius:999px;cursor:pointer;background:#fff;color:#0c3d98;font-weight:900;font-size:15px}
+    #driver{position:fixed;bottom:8%;left:-30vw;z-index:25;width:clamp(120px,24vw,210px);pointer-events:none;display:none;filter:drop-shadow(0 0 16px rgba(255,106,0,.9))}
+    #driver.go{display:block;animation:drive 2.5s ease-in forwards}
+    @keyframes drive{from{transform:translateX(0)}to{transform:translateX(145vw)}}
+
+    .heart{position:absolute;font-size:20px;color:#ff5d91;animation:floatUp 5.5s linear forwards;opacity:.92;text-shadow:0 0 12px rgba(255,93,145,.75)}
+    @keyframes floatUp{from{transform:translateY(0) scale(.8);opacity:0}10%{opacity:1}to{transform:translateY(-120px) scale(1.35);opacity:0}}
+
+    @media (max-width:680px){
+      #hint{top:auto;bottom:102px}
+      #universe{width:min(98vw,700px)}
+      .photoCard{width:100px}
+      #photos{gap:10px}
+      #core{width:170px}
+      .orbitTag{font-size:10px;padding:5px 10px}
+    }
+  </style>
+</head>
+<body>
+  <div id="stars"></div>
+  <div id="shooting"></div>
+  <div id="sparkles"></div>
+  <div id="hearts"></div>
+
+  <div id="title">
+    <div class="big">Para mi amor bonito Adan ❤️🚗</div>
+    <div class="sub">Mi piloto favorito en esta galaxia llamada amor</div>
+  </div>
+
+  <div id="universe">
+    <div id="galaxy"></div>
+    <div id="core"><div class="name">Adan</div><div class="line">mi amor bonito ✨</div></div>
+    <div id="orbits"></div>
+    <div id="centerWords"></div>
+  </div>
+
+  <div id="hint">Toca un Hot Wheels para ver un mensaje de amor 💫</div>
+
+  <div id="photos">
+    <div class="photoCard"><img src="adan.png" alt="Adan" /><p>Mi Adan 💙</p></div>
+    <div class="photoCard"><img src="couple.webp" alt="Nosotros" /><p>Tú y yo por siempre ❤️</p></div>
+  </div>
+
+  <button id="musicBtn">🎵 Escuchar “Por Verte Feliz”</button>
+  <audio id="bgMusic" src="Por_Verte_Feliz.mp3" preload="auto"></audio>
+
+  <div id="phrase">
+    <img id="phraseCar" alt="carrito" src="car_blue.png" />
+    <div id="phraseText"></div>
+    <button id="closePhrase">Cerrar 💌</button>
+  </div>
+  <img id="driver" alt="carrito animado" src="car_blue.png" />
+
+  <script>
+    const stars = document.getElementById('stars');
+    for(let i=0;i<240;i++){
+      const s=document.createElement('span');
+      s.className='star';
+      const size=(Math.random()*2.6+1).toFixed(2)+'px';
+      s.style.width=size; s.style.height=size;
+      s.style.left=Math.random()*100+'%';
+      s.style.top=Math.random()*100+'%';
+      s.style.setProperty('--d',(1.2+Math.random()*3.4).toFixed(2)+'s');
+      s.style.setProperty('--o',(0.35+Math.random()*0.65).toFixed(2));
+      stars.appendChild(s);
+    }
+
+    const sparkles = document.getElementById('sparkles');
+    for(let i=0;i<20;i++){
+      const sp=document.createElement('span');
+      sp.className='spark';
+      sp.style.left=(25 + Math.random()*50)+'%';
+      sp.style.top=(23 + Math.random()*52)+'%';
+      sp.style.animationDelay=(Math.random()*2.5)+'s';
+      sparkles.appendChild(sp);
+    }
+
+    const shooting = document.getElementById('shooting');
+    function addShootingStar(){
+      const el=document.createElement('div');
+      el.className='shoot';
+      el.style.left=(-10 + Math.random()*50)+'vw';
+      el.style.top=(10 + Math.random()*45)+'vh';
+      el.addEventListener('animationend', ()=>el.remove());
+      shooting.appendChild(el);
+    }
+    setInterval(()=>{ if(Math.random()<0.72) addShootingStar(); }, 2600);
+    addShootingStar();
+
+    const orbitContainer = document.getElementById('orbits');
+    const cars = ['car_blue.png','car_red.png','car_yellow.png','car_black.png','car_blue.png','car_red.png','car_yellow.png','car_black.png','car_blue.png','car_red.png','car_yellow.png','car_black.png'];
+    const orbitConfig = [
+      {size:'min(74vw, 620px)', dur:'20s', carW:'min(21vw, 150px)', start:'14deg', dir:'normal', label:'Mi piloto favorito 💙'},
+      {size:'min(69vw, 570px)', dur:'18s', carW:'min(20vw, 142px)', start:'120deg', dir:'reverse', label:'Te amo muchísimo ✨'},
+      {size:'min(64vw, 525px)', dur:'16s', carW:'min(19vw, 136px)', start:'220deg', dir:'normal', label:'Contigo siempre 🏁'},
+      {size:'min(59vw, 480px)', dur:'14s', carW:'min(18vw, 128px)', start:'300deg', dir:'reverse', label:'Mi campeón hermoso 🏆'},
+      {size:'min(54vw, 438px)', dur:'12.5s', carW:'min(17vw, 120px)', start:'48deg', dir:'normal', label:'Mi amor bonito ❤️'},
+      {size:'min(49vw, 398px)', dur:'11.2s', carW:'min(16vw, 114px)', start:'156deg', dir:'reverse', label:'Mi lugar favorito eres tú 💫'},
+      {size:'min(44vw, 360px)', dur:'10s', carW:'min(15vw, 106px)', start:'254deg', dir:'normal', label:'Mi corazón es tuyo 💙'},
+      {size:'min(39vw, 318px)', dur:'9s', carW:'min(14vw, 98px)', start:'334deg', dir:'reverse', label:'A toda velocidad contigo 💨'},
+      {size:'min(34vw, 280px)', dur:'8.3s', carW:'min(13vw, 92px)', start:'95deg', dir:'normal', label:'Feliz día de los carritos 🚘'},
+      {size:'min(30vw, 245px)', dur:'7.4s', carW:'min(12vw, 82px)', start:'188deg', dir:'reverse', label:'Tú y yo por siempre 💕'},
+      {size:'min(26vw, 212px)', dur:'6.7s', carW:'min(11vw, 74px)', start:'275deg', dir:'normal', label:'Mi mejor aventura ✨'},
+      {size:'min(22vw, 182px)', dur:'5.9s', carW:'min(10vw, 66px)', start:'20deg', dir:'reverse', label:'Te elijo siempre 🤍'}
+    ];
+
+    orbitConfig.forEach((cfg, i) => {
+      const orbit = document.createElement('div');
+      orbit.className = 'orbit';
+      orbit.style.setProperty('--size', cfg.size);
+      orbit.style.setProperty('--dur', cfg.dur);
+      orbit.style.setProperty('--carW', cfg.carW);
+      orbit.style.setProperty('--dir', cfg.dir);
+
+      const rotor = document.createElement('div');
+      rotor.className = 'rotor';
+      rotor.style.setProperty('--dir', cfg.dir);
+      rotor.style.setProperty('--dur', cfg.dur);
+
+      const offset = document.createElement('div');
+      offset.className = 'offset';
+      offset.style.setProperty('--start', cfg.start);
+      offset.style.transform = `rotate(${cfg.start})`;
+
+      const btn = document.createElement('button');
+      btn.className = 'carHot';
+      btn.type = 'button';
+      btn.dataset.car = cars[i];
+      
+      const img = document.createElement('img');
+      img.src = cars[i];
+      img.alt = 'Hot Wheels';
+      btn.appendChild(img);
+
+      const tag = document.createElement('div');
+      tag.className = 'orbitTag';
+      tag.textContent = cfg.label;
+
+      offset.appendChild(btn);
+      offset.appendChild(tag);
+      rotor.appendChild(offset);
+      orbit.appendChild(rotor);
+      orbitContainer.appendChild(orbit);
+    });
+
+    const centerWords = document.getElementById('centerWords');
+    const innerWords = [
+      {text:'Mi Adan', size:'min(28vw,210px)', dur:'6.2s', dir:'reverse', start:'14deg'},
+      {text:'Mi amor bonito', size:'min(36vw,280px)', dur:'8s', dir:'normal', start:'120deg'},
+      {text:'Mi vida', size:'min(24vw,185px)', dur:'5.6s', dir:'normal', start:'228deg'},
+      {text:'Te amo', size:'min(32vw,248px)', dur:'7.2s', dir:'reverse', start:'300deg'},
+      {text:'Siempre tú', size:'min(40vw,310px)', dur:'8.8s', dir:'normal', start:'64deg'},
+      {text:'Mi campeón', size:'min(20vw,150px)', dur:'5.1s', dir:'reverse', start:'180deg'}
+    ];
+    innerWords.forEach(w => {
+      const ring = document.createElement('div');
+      ring.className = 'wordOrbit';
+      ring.style.setProperty('--size', w.size);
+      ring.style.setProperty('--dur', w.dur);
+      ring.style.setProperty('--dir', w.dir);
+      ring.style.transform = `translate(-50%,-50%) rotate(${w.start})`;
+      const chip = document.createElement('div');
+      chip.className = 'wordChip';
+      chip.textContent = w.text;
+      ring.appendChild(chip);
+      centerWords.appendChild(ring);
+    });
+
+    const phrases = [
+      'Si pudiera, te regalaría todos los Hot Wheels del mundo, pero prefiero regalarte mi corazón 💙',
+      'Eres mi piloto favorito y mi lugar favorito en el mundo 🏎️',
+      'Contigo cada día es una carrera que quiero ganar 🏁',
+      'Podría tener mil carritos, pero solo quiero quedarme contigo 💙',
+      'Tú eres mi meta, mi pista y mi mejor aventura ✨',
+      'A tu lado siempre voy a toda velocidad, pero sin querer llegar a ningún otro lugar 💨',
+      'Feliz Día de los Carritos, amor. Gracias por hacerme tan feliz 🚗',
+      'Si mi corazón fuera un carrito, ya sabes quién lo maneja 🏎️💙',
+      'Eres mi campeón, mi todo y mi razón de sonreír 🏆',
+      'En esta carrera de la vida, te elijo a ti siempre 💙',
+      'Mi colección favorita eres tú 💙',
+      'Adan, contigo todo se ve más bonito, más feliz y más especial ❤️',
+      'Mi amor, tú eres el único que acelera mi corazón de esta manera 💫',
+      'Si la vida fuera una pista, siempre escogería correrla contigo 🛞❤️',
+      'Tú haces que hasta mis días normales se sientan mágicos y llenos de amor ✨',
+      'Gracias por existir, por cuidarme y por hacerme sentir tan afortunada 💖',
+      'Mi lugar seguro siempre va a ser tu amor 🤍',
+      'Te volvería a elegir una y mil veces, en esta vida y en todas 💙',
+      'No hay premio más lindo que tenerte conmigo 🏁💘',
+      'Eres mi mejor regalo, mi mejor sonrisa y mi mejor destino 🚗💕'
+    ];
+
+    const phraseBox = document.getElementById('phrase');
+    const phraseText = document.getElementById('phraseText');
+    const phraseCar = document.getElementById('phraseCar');
+    const closePhrase = document.getElementById('closePhrase');
+    const driver = document.getElementById('driver');
+    const hearts = document.getElementById('hearts');
+    let phraseIndex = 0;
+
+    function onCarClick(e, carSrc){
+      e.stopPropagation();
+      const rect = (e.currentTarget || e.target).getBoundingClientRect();
+      showPhrase(carSrc, rect.left + rect.width/2, rect.top + rect.height/2);
+    }
+
+    function showPhrase(carSrc, x, y){
+      phraseText.textContent = phrases[phraseIndex % phrases.length];
+      phraseIndex++;
+      phraseCar.src = carSrc;
+      driver.src = carSrc;
+      phraseBox.classList.add('show');
+      driver.classList.remove('go');
+      void driver.offsetWidth;
+      driver.classList.add('go');
+      spawnHearts(x, y);
+    }
+    closePhrase.addEventListener('click', (e)=>{e.stopPropagation(); phraseBox.classList.remove('show');});
+    phraseBox.addEventListener('click', (e)=>{ e.stopPropagation(); });
+    driver.addEventListener('animationend', ()=>driver.classList.remove('go'));
+
+    function spawnHearts(x, y){
+      for(let i=0;i<14;i++){
+        const h=document.createElement('div');
+        h.className='heart';
+        h.textContent=Math.random()>0.25?'❤️':'💙';
+        h.style.left=(x + (Math.random()*60-30))+'px';
+        h.style.top=(y + (Math.random()*40-20))+'px';
+        h.style.animationDuration=(3.6+Math.random()*2.1)+'s';
+        hearts.appendChild(h);
+        h.addEventListener('animationend', ()=>h.remove());
+      }
+    }
+
+    document.addEventListener('click', (e)=>{
+      const car = e.target.closest('.carHot');
+      if(car){
+        e.stopPropagation();
+        showPhrase(car.dataset.car, e.clientX, e.clientY);
+        return;
+      }
+      if(!e.target.closest('#phrase') && !e.target.closest('#musicBtn')){
+        phraseBox.classList.remove('show');
+      }
+    });
+
+    const music = document.getElementById('bgMusic');
+    const musicBtn = document.getElementById('musicBtn');
+    let musicStarted = false;
+    function startMusic(){
+      music.volume = 0.85;
+      music.play().then(() => {
+        musicStarted = true;
+        musicBtn.textContent = '🎵 Sonando: “Por Verte Feliz”';
+      }).catch(() => {
+        musicBtn.textContent = '🎵 Toca otra vez para escuchar';
+      });
+    }
+    musicBtn.addEventListener('click', (e) => { e.stopPropagation(); startMusic(); });
+    window.addEventListener('pointerdown', () => { if(!musicStarted) startMusic(); }, { once:true });
+  </script>
+</body>
+</html>
